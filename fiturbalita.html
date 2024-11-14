@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berat Badan Ideal & Gizi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Podkova:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Podkova', serif;
+        }
+     /* Global Styles */
+        body {
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+/* Container Styles */
+        .container {
+            max-width: 400px;
+            width: 95%;
+            position: relative;
+            margin: auto;
+            padding-top: 80px; /* Tambahkan padding untuk memberikan ruang di atas */
+        }
+
+/* Header Styles */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #d3c7ff;
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .logo {
+            width: 80px;
+        }
+        /* Dropdown Menu Styles */
+        .dropdown-menu {
+            position: fixed;
+            top: 60px;
+            left: -100%;
+            width: 75%;
+            max-width: 300px;
+            height: 100%;
+            background-color: #d3c7ff;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            transition: left 0.3s ease;
+            z-index: 999;
+        }
+        .dropdown-menu.active {
+            left: 0;
+        }
+        .dropdown-menu button {
+            background-color: #b3a7e6;
+            border: none;
+            padding: 10px;
+            font-size: 14px;
+            color: #333;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            width: 100%;
+            max-width: 200px;
+            transition: background-color 0.3s;
+        }
+        .dropdown-menu button:hover {
+            background-color: #9b8dd6;
+        }
+        /* Main Content Styles */
+        h1 {
+            font-size: 1.5em;
+            color: #333;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .input-section {
+            margin-bottom: 20px;
+        }
+        .input-label {
+            font-size: 1em;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .input-box {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-size: 1em;
+            color: black;
+        }
+        .blue { background-color: #A6BDF0; }
+        .green { background-color: #C2E5C4; }
+        .pink { background-color: #F8C1C1; }
+        .yellow { background-color: #FFE2A9; }
+        /* Button Styling */
+        .button-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .button-container button {
+            background-color: #DAF1DF;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #333;
+            cursor: pointer;
+        }
+        /* Result Section */
+        .result-section {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #D6F8DB;
+            border-radius: 10px;
+        }
+        /* Tahukah Ibu Section */
+        .tahukah-ibu-section {
+            margin-top: 20px;
+            background-color: #FAD2E1;
+            padding: 20px;
+            border-radius: 10px;
+            position: relative;
+        }
+        .tahukah-ibu-title {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .tahukah-ibu-content {
+            font-size: 1em;
+            color: #333;
+            text-align: center;
+        }
+        .angka {
+            display: inline-block;
+            text-align: left;
+        }
+        .ibu {
+            width: 80px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="menu-icon" onclick="toggleMenu()">☰</div>
+            <img class="logo" src="aset/logo.png" alt="Logo">
+        </header>
+        <!-- Dropdown Menu -->
+        <div class="dropdown-menu" id="dropdownMenu">
+            <button onclick="navigateTo('cek-gizi-balita.html')">Cek Gizi Balita</button>
+            <button onclick="navigateTo('cek-gizi-ibu-hamil.html')">Cek Gizi Ibu Hamil</button>
+            <button onclick="navigateTo('menu-informasi.html')">Menu Informasi</button>
+        </div>
+        <!-- Main Content -->
+        <h1>Gizi Ideal Anak Balita</h1>
+        <div class="input-section">
+            <label class="input-label" for="jenisKelamin">Jenis Kelamin</label>
+            <select id="jenisKelamin" class="input-box yellow">
+                <option value="">Pilih Jenis Kelamin</option>
+                <option value="laki-laki">Laki-laki</option>
+                <option value="perempuan">Perempuan</option>
+            </select>
+        </div>
+        <div class="input-section">
+            <label class="input-label" for="beratSebelum">Berat Badan  (kg)</label>
+            <input type="number" id="beratSebelum" class="input-box blue">
+        </div>
+        <div class="input-section">
+            <label class="input-label" for="beratSaatIni">Usia (tahun)</label>
+            <input type="number" id="beratSaatIni" class="input-box green">
+        </div>
+        <div class="input-section">
+            <label class="input-label" for="tinggiBadan">Tinggi Badan (cm)</label>
+            <input type="number" id="tinggiBadan" class="input-box pink">
+        </div>
+        
+        <!-- Button Section -->
+        <div class="button-container">
+            <button onclick="resetForm()">Ulang</button>
+            <a href="#" id="linkResult">
+                <button onclick="hitungBeratIdeal()">Mulai Hitung</button>
+            </a>
+        </div>
+        <!-- Result Section -->
+        <div class="result-section" id="resultSection">
+            <p id="resultText"></p>
+        </div>
+        <!-- Tahukah Ibu Section -->
+        <div class="tahukah-ibu-section">
+            <h2 class="tahukah-ibu-title">Tahukah Ibu?</h2>
+            <div class="tahukah-ibu-content">
+                Berikut adalah nutrisi penting yang perlu dipenuhi ibu hamil:
+                <ol class="angka">
+                    <li>Folat dan Asam Folat</li>
+                    <li>Kalsium</li>
+                    <li>Vitamin D</li>
+                    <li>Protein</li>
+                    <li>Zat Besi</li>
+                </ol>
+                <img class="ibu" src="aset/ibu pink love 1.png" alt="Logo">
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleMenu() {
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            const isActive = dropdownMenu.classList.contains('active');
+            dropdownMenu.classList.toggle('active', !isActive);
+            dropdownMenu.setAttribute('aria-hidden', isActive);
+        }
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+        function hitungBeratIdeal() {
+    const beratBadan = parseFloat(document.getElementById("beratSebelum").value);
+    const tinggiBadan = parseFloat(document.getElementById("tinggiBadan").value) / 100; // Konversi ke meter
+    
+    // Periksa apakah input berat badan dan tinggi badan valid
+    if (isNaN(beratBadan) || isNaN(tinggiBadan) || tinggiBadan <= 0) {
+        alert("Masukkan berat badan dan tinggi badan yang valid.");
+        return;
+    }
+
+    // Hitung IMT (Indeks Massa Tubuh)
+    const imt = beratBadan / (tinggiBadan * tinggiBadan);
+    const linkElement = document.getElementById("linkResult");
+    
+    let kategori;
+    if (imt < 18.5) {
+        linkElement.href = "GizigaIdeal.html";
+    } else if (imt >= 18.5 && imt < 22.9) {
+        linkElement.href = "Gizianak.html"; //ideal
+    } else if (imt >= 23 && imt < 29.9) {
+        linkElement.href = "GizigaIdeal.html";
+    } else {
+        linkElement.href = "tidakideal.html";
+    }
+
+    const resultText = `Indeks Massa Tubuh (IMT) Anda adalah ${imt.toFixed(2)}. Kategori: ${kategori}.`;
+    document.getElementById("resultText").innerText = resultText;
+    document.getElementById("resultSection").style.display = "block";
+}
+
+function resetForm() {
+    document.getElementById("beratSebelum").value = '';
+    document.getElementById("tinggiBadan").value = '';
+    document.getElementById("resultSection").style.display = "none";
+}
+
+    </script>
+</body>
+</html>
